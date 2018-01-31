@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ * Load configuration from the file and validates the input parameters.
+ *
+ */
 public class ConfigurationHandler
 {
 
@@ -19,6 +23,12 @@ public class ConfigurationHandler
   private Map configuration = new HashMap();
   private static final Integer HARD_LIMIT = new Integer("1001");
 
+  /**
+   * Load predefined configuration parameters from the config.properties file.
+   *
+   * @return
+   * @throws Exception
+   */
   public Map<String, Integer> loadConfiguration() throws Exception
   {
     configuration = new HashMap();
@@ -37,14 +47,21 @@ public class ConfigurationHandler
 
     for (String parameterName : parameterList)
     {
-      this.configuration.put(parameterName, Integer.parseInt(
-              prop.getProperty(parameterName))
+      this.configuration.put(
+        parameterName,
+        Integer.parseInt(prop.getProperty(parameterName))
       );
     }
 
     return this.configuration;
   }
 
+  /**
+   * Validating of the configuration parameters. If there exists any invalid
+   * value return FALSE otherwise TRUE.
+   *
+   * @return
+   */
   public Boolean validateConfiguration()
   {
     // Detect invalid number of sales

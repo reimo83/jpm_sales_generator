@@ -4,6 +4,10 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Generates example input files for processing of sales messages based on the
+ * configuration and input data.
+ */
 public class SalesGenerator
 {
   public static void main(String[] args)

@@ -22,12 +22,19 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Generate XML files based on configuration and input data for processing sales
+ * data.
+ */
 public class XmlGenerator
 {
   private String currency = "EUR";
   private Map<String, Float> inputData = new HashMap();
   private List<String> operationTypeList = new ArrayList<>();
 
+  /**
+   * Initializing of class variables.
+   */
   public XmlGenerator()
   {
     operationTypeList.add("add");
@@ -35,6 +42,11 @@ public class XmlGenerator
     operationTypeList.add("subtract");
   }
 
+  /**
+   * Process XML files creation based on the configuration.
+   *
+   * @param config
+   */
   public void generateFiles(Map config)
   {
     this.loadInputData("input.csv");
@@ -59,6 +71,15 @@ public class XmlGenerator
     }
   }
 
+  /**
+   * Generate single XML file based on the input parameters.
+   *
+   * @param numberOfItems Defines number of item tags for the sale
+   * @param isOperationDefined Operation tag is added when this value is TRUE
+   * @param numberOfFile Sequence number for the generated files
+   * @param minQuantity Defines minimum value for product quantity
+   * @param maxQuantity Defines maximum value for product quantity
+   */
   public void generateXmlFile(
     Integer numberOfItems,
     Boolean isOperationDefined,
@@ -159,6 +180,13 @@ public class XmlGenerator
     }
   }
 
+  /**
+   * Generate random number in the range from min to max.
+   *
+   * @param min Minimum value for randomly generated number
+   * @param max Maximum value for randomly generated number
+   * @return
+   */
   private Integer randomNumberGenerator(Integer min, Integer max)
   {
     Random rand = new Random();
@@ -166,6 +194,11 @@ public class XmlGenerator
     return rand.nextInt(max) + min;
   }
 
+  /**
+   * Returns random value for product type.
+   *
+   * @return
+   */
   private String randomProductTypeGenerator()
   {
     Random random = new Random();
@@ -175,6 +208,11 @@ public class XmlGenerator
     return productType;
   }
 
+  /**
+   * Returns random value for operation type.
+   *
+   * @return
+   */
   private String randomOperationTypeGenerator()
   {
     Random random = new Random();
@@ -183,6 +221,12 @@ public class XmlGenerator
     return operationType;
   }
 
+  /**
+   * Load input data from the CSV data. First column includes product type and
+   * the second one includes the price of the product.
+   *
+   * @param csvFile CSV file with the data for generating XML files
+   */
   private void loadInputData(String csvFile)
   {
     String line = "";
@@ -202,11 +246,21 @@ public class XmlGenerator
     }
   }
 
+  /**
+   * Returns current currency defined for data processing.
+   *
+   * @return
+   */
   public String getCurrency()
   {
     return this.currency;
   }
 
+  /**
+   * Change the currency for data processing.
+   *
+   * @param currency Three letter international currency code
+   */
   public void setCurrency(String currency)
   {
     this.currency = currency;
